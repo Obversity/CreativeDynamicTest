@@ -1,0 +1,16 @@
+<div class="page-header">
+  <% if params[:category] %>
+    <h1><%= params[:category] %></h1>
+  <% else %>
+    <h1>Listing products</h1>
+  <% end %>
+</div>
+
+<div class="list-group">
+  <% @products.each do |product| %>
+        <%= link_to product.product_name, url_for(product), {class:"list-group-item"} %>
+  <% end %>
+</div>
+
+<%= paginate @products %>
+

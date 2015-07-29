@@ -1,0 +1,9 @@
+<div class="page-header">
+  <h1>Listing categories</h1>
+</div>
+
+<div class="list-group">
+  <% @categories.each do |category| %>
+        <%= link_to category.category_name, {controller: "products", category: category.category_name}, {class: "list-group-item"}  %>
+  <% end %>
+</div>
