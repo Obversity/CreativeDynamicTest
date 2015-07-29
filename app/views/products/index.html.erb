@@ -1,9 +1,13 @@
 <div class="page-header">
+  <%= link_to options= {controller:"categories"}, html_options= {class:"btn btn-primary"}  do %>
+      <span class="glyphicon glyphicon-arrow-left"></span> Back to Categories
+  <% end %>
   <% if params[:category] %>
     <h1><%= params[:category] %></h1>
   <% else %>
     <h1>Listing products</h1>
   <% end %>
+
 </div>
 
 <div class="list-group">
