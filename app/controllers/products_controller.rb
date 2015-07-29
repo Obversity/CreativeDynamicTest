@@ -10,10 +10,10 @@ class ProductsController < ApplicationController
   def index
     if params["category"]
       @products = Category
-                    .where(category_name: params["category"])
-                    .first
-                    .products
-                    .order(:product_name).page(params[:page]).per(5)
+                      .where(category_name: params['category'])
+                      .first
+                      .products
+                      .order(:product_name).page(params[:page]).per(5)
     else
       @products = Product.all.page(params[:page]).per(5)
     end
@@ -29,11 +29,11 @@ class ProductsController < ApplicationController
   end
 
   def import_products
-    #see utilities module
-    csv = get_remote_csv "https://dl.dropboxusercontent.com/u/6582068/products.csv"
+    # see utilities module
+    csv = get_remote_csv 'https://dl.dropboxusercontent.com/u/6582068/products.csv'
 
     #create categories
-    csv.map { |row| row.to_hash["Category"] }.uniq.each do |name|
+    csv.map { |row| row.to_hash['Category'] }.uniq.each do |name|
       unless Category.exists?(category_name: name)
         Category.create(category_name: name)
       end
@@ -41,12 +41,12 @@ class ProductsController < ApplicationController
 
     #create products
     csv.map { |row| row.to_hash }.each do |row|
-      unless Product.exists?(product_id: row["ProductID"])
+      unless Product.exists?(product_id: row['ProductID'])
         Product.create(
-          category: Category.where(category_name: row["Category"]).first,
-          product_id: row["ProductID"],
-          product_name: row["Product Name"],
-          price: row["Price"].to_f
+            category: Category.where(category_name: row['Category']).first,
+            product_id: row['ProductID'],
+            product_name: row['Product Name'],
+            price: row['Price'].to_f
         )
       end
     end
