@@ -8,12 +8,9 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    if params["category"]
-      @products = Category
-                      .where(category_name: params['category'])
-                      .first
-                      .products
-                      .order(:product_name).page(params[:page]).per(5)
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @products = @category.products.order(:product_name).page(params[:page]).per(5)
     else
       @products = Product.all.page(params[:page]).per(5)
     end

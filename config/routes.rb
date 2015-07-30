@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :categories
-  resources :products
+  resources :categories, only:[:index] do
+    resources :products, only: [:index, :show]
+  end
+
+  resources :products, only: [:index]
+
 
   root "categories#index"
   get 'start' => "products#start"

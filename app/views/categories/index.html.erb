@@ -4,6 +4,6 @@
 
 <div class="list-group">
   <% @categories.each do |category| %>
-        <%= link_to category.category_name, {controller: "products", category: category.category_name}, {class: "list-group-item"}  %>
+        <%= link_to category.category_name, category_products_path(category), {class: "list-group-item"}  %>
   <% end %>
 </div>

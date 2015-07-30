@@ -6,5 +6,5 @@
   <dt>Price:</dt>
   <dd><%= number_to_currency @product.price %></dd>
   <dt>Category:</dt>
-  <dd><%= link_to @product.category.category_name, {controller: "products", category: @product.category.category_name} %></dd>
+  <dd><%= link_to @product.category.category_name, {controller: "products"} %></dd>
 </dl>
